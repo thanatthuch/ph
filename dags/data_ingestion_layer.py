@@ -31,7 +31,7 @@ defaultArgs : dict = {
     'email_on_failure': True,
     'email_on_retry': True,
     'email_on_success': True,
-    'email': 'thanatthuch@msyne.co.th'
+    'email': 'thanatthuch.kam@outlook.com'
 }
 
 
