@@ -1,0 +1,65 @@
+[2024-01-12T06:12:43.540+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Data_Ingestion.raw_load manual__2024-01-12T06:12:41.340697+00:00 [queued]>
+[2024-01-12T06:12:43.544+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Data_Ingestion.raw_load manual__2024-01-12T06:12:41.340697+00:00 [queued]>
+[2024-01-12T06:12:43.544+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 1
+[2024-01-12T06:12:43.548+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): raw_load> on 2024-01-12 06:12:41.340697+00:00
+[2024-01-12T06:12:43.552+0000] {standard_task_runner.py:57} INFO - Started process 2014 to run task
+[2024-01-12T06:12:43.554+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'Data_Ingestion', 'raw_load', 'manual__2024-01-12T06:12:41.340697+00:00', '--job-id', '97', '--raw', '--subdir', 'DAGS_FOLDER/data_ingestion_layer.py', '--cfg-path', '/tmp/tmp7hizwimo']
+[2024-01-12T06:12:43.557+0000] {standard_task_runner.py:85} INFO - Job 97: Subtask raw_load
+[2024-01-12T06:12:43.582+0000] {task_command.py:415} INFO - Running <TaskInstance: Data_Ingestion.raw_load manual__2024-01-12T06:12:41.340697+00:00 [running]> on host 9e5ee476ef7d
+[2024-01-12T06:12:43.726+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='thanatthuch@msyne.co.th' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='Data_Ingestion' AIRFLOW_CTX_TASK_ID='raw_load' AIRFLOW_CTX_EXECUTION_DATE='2024-01-12T06:12:41.340697+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-01-12T06:12:41.340697+00:00'
+[2024-01-12T06:12:43.737+0000] {logging_mixin.py:151} INFO -    yearMonth  ProductID  ... salesAmount  percentage_change
+0    1996-08         17  ...       936.0               0.00
+1    1996-08          3  ...       240.0                NaN
+2    1996-08         40  ...      1470.0             100.00
+3    1996-08         60  ...      2067.2              90.00
+4    1996-08         18  ...       600.0                NaN
+5    1996-08          1  ...       907.2                NaN
+6    1996-08          5  ...       340.0             -74.03
+7    1996-08         71  ...       344.0                NaN
+8    1996-08         33  ...        88.0             -48.24
+9    1996-08         15  ...       248.0                NaN
+10   1996-08         31  ...       550.0             175.00
+11   1996-08         24  ...       144.0              -6.98
+12   1996-08         44  ...       945.5                NaN
+13   1996-08         10  ...       967.2                NaN
+14   1996-08         36  ...       456.0              20.00
+15   1996-08         43  ...      1472.0                NaN
+16   1996-08         13  ...       144.0                NaN
+17   1996-08         76  ...       475.2             120.00
+18   1996-08         67  ...        56.0                NaN
+19   1996-08         51  ...        84.8             -97.33
+20   1996-08         49  ...       240.0             -62.50
+21   1996-08         72  ...       945.2              12.36
+22   1996-08         30  ...       124.2             -90.00
+23   1996-08         77  ...       104.0             -62.96
+24   1996-08         16  ...       556.0             -57.89
+25   1996-08         53  ...       943.2             140.00
+26   1996-08         55  ...       384.0              -4.76
+27   1996-08         59  ...       924.0             -79.00
+28   1996-08         57  ...        31.2             -96.92
+29   1996-08         73  ...       300.0                NaN
+30   1996-08         75  ...       260.4                NaN
+31   1996-08         28  ...       728.0                NaN
+32   1996-08         34  ...       224.0                NaN
+33   1996-08         27  ...       526.5             -40.00
+34   1996-08         68  ...        30.0                NaN
+35   1996-08         20  ...      1684.8             -35.00
+36   1996-08         46  ...       144.0                NaN
+37   1996-08         35  ...      1497.6             420.00
+38   1996-08         62  ...      2048.8             246.67
+39   1996-08         19  ...       138.7                NaN
+40   1996-08         29  ...      1485.0              50.00
+41   1996-08         54  ...        59.0                NaN
+42   1996-08         63  ...       456.3                NaN
+43   1996-08         64  ...       239.4                NaN
+
+[44 rows x 5 columns]
+[2024-01-12T06:12:43.737+0000] {postgres.py:168} INFO - Running copy expert: COPY raw_staging.ProductSalesAmountByMonth (yearMonth, ProductId, ProductName, salesAmount, percentage_change)
+        FROM stdin WITH CSV HEADER
+        DELIMITER as ','
+    , filename: /opt/***/data/1996Aug.csv
+[2024-01-12T06:12:43.741+0000] {base.py:73} INFO - Using connection ID 'postgres_default' for task execution.
+[2024-01-12T06:12:43.744+0000] {python.py:194} INFO - Done. Returned value was: None
+[2024-01-12T06:12:43.748+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=Data_Ingestion, task_id=raw_load, execution_date=20240112T061241, start_date=20240112T061243, end_date=20240112T061243
+[2024-01-12T06:12:43.768+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-01-12T06:12:43.781+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check

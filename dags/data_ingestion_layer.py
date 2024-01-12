@@ -1,6 +1,7 @@
 
 import os
 import pandas as pd
+from datetime import datetime
 from airflow import DAG
 from airflow.providers.postgres.operators.postgres import PostgresOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
@@ -11,10 +12,12 @@ from airflow.operators.dummy_operator import DummyOperator
 
 
 
+
 # /* DECLARE argument */
 
 zone_raw : str = "raw_staging"
 zone_pst : str = "pst_staging"
+zone_crt : str = "medcury-de"
 sourcePath      : str  = "/opt/airflow/data"
 targetTable     : str  = "ProductSalesAmountByMonth"
 
@@ -49,7 +52,7 @@ raw_truncate = PostgresOperator(
 
 ############################# RAW Process
 def load_data_raw_zone():
-    sql = f"""COPY {zone_raw}.{targetTable} (yearMonth, ProductId, ProductName, salesAmount, percentage_change)
+    sql = f"""COPY {zone_raw}.{targetTable} (yearMonth, ProductId, ProductName, salesAmount)
         FROM stdin WITH CSV HEADER
         DELIMITER as ','
     """
@@ -74,13 +77,80 @@ pst_truncate = PostgresOperator(
     dag=dag
 )
 
-pst_zone_command=f"""INSERT INTO {zone_pst}.{targetTable} (ProductID, ProductName, salesAmount, percentage_change, start_date) SELECT cast(ProductID as int), ProductName ,cast(salesAmount as decimal(15,2)), COALESCE(cast(percentage_change as decimal(5,2)),0), TO_DATE(yearMonth || '-01', 'YYYY-MM-DD') as start_date  FROM {zone_raw}.{targetTable} 
+pst_zone_command=f"""INSERT INTO {zone_pst}.{targetTable} (ProductID, ProductName, salesAmount, start_date) SELECT cast(ProductID as int), ProductName ,cast(salesAmount as decimal(15,2)), TO_DATE(yearMonth || '-01', 'YYYY-MM-DD') as start_date  FROM {zone_raw}.{targetTable} 
 """
 pst_zone = PostgresOperator(
     task_id="pst_load",
     sql=pst_zone_command,
     dag=dag
 )
+
+# crt_zone_command=f"""INSERT INTO "{zone_crt}".{targetTable} (ProductID, ProductName, salesAmount, percentage_change, start_date)
+# SELECT ProductId, ProductName, salesAmount, percentage_change, start_date
+# FROM {zone_pst}.{targetTable}"""
+
+# # crt_zone = PostgresOperator(
+# #     task_id="crt_load",
+# #     sql=crt_zone_command,
+# #     dag=dag
+# # )
+
+
+
+def fetch_data():
+    # ทำการดึงข้อมูลจากฐานข้อมูล
+    # ตัวอย่างการใช้ SQLAlchemy เพื่อทำการสร้างคำสั่ง SQL
+    from sqlalchemy import create_engine
+    engine = create_engine('postgresql://airflow:airflow@postgres/postgres')
+    connection = engine.connect()
+    result = connection.execute(f'SELECT COUNT(1) FROM "{zone_crt}".{targetTable} limit 1')
+    file_path = sourcePath + "/" +os.listdir(sourcePath)[0]
+
+    df = pd.read_csv(file_path)
+    date_obj = datetime.strptime(df.yearMonth[0], "%Y-%m")
+
+    day_of_file = date_obj.replace(day=1).strftime("%Y-%m-%d")
+    
+    # # ดึงข้อมูลและทำอะไรกับข้อมูลตามต้องการ
+    
+    have_data = True
+    check_date= False
+    for row in result:
+        if row[0] == 0:
+            have_data = False
+    
+    if have_data is False:
+        connection.execute(f"""INSERT INTO "{zone_crt}".{targetTable} (ProductID, ProductName, salesAmount, percentage_change, start_date) SELECT ProductId, ProductName, salesAmount, NULL as percentage_change, start_date FROM {zone_pst}.{targetTable}
+        """)
+    else:
+        connection.execute(f"""INSERT INTO "medcury-de".ProductSalesAmountByMonth 
+SELECT A.ProductID, A.ProductName, A.salesAmount,
+CASE WHEN A.start_date <> B.start_date THEN ((A.salesAmount / B.salesAmount)-1) *100 ELSE NULL END percentage_change,
+A.start_date
+FROM pst_staging.ProductSalesAmountByMonth A
+LEFT JOIN (SELECT DISTINCT ON (PRODUCTID) t1.*
+           FROM "medcury-de".ProductSalesAmountByMonth t1
+           WHERE t1.ProductID = (SELECT ProductID
+                                 FROM "medcury-de".ProductSalesAmountByMonth t2 
+                                 WHERE t2.ProductID = t1.ProductID
+                                 ORDER BY t2.start_date DESC
+                                 LIMIT 1)) B
+ON A.ProductID = B.ProductID
+WHERE NOT EXISTS (SELECT 1 
+                  FROM "medcury-de".ProductSalesAmountByMonth C
+                  WHERE C.ProductID = A.ProductID
+                  AND C.start_date = A.start_date);""")
+    
+    # ปิดการเชื่อมต่อกับฐานข้อมูล
+    connection.close()
+
+crt_zone = PythonOperator(
+    task_id='crt_zone',
+    python_callable=fetch_data,
+    dag=dag,
+)
+
+
 
 
 
@@ -94,7 +164,8 @@ end = DummyOperator(
     dag=dag,
 )
 
-start >> raw_truncate >> raw_zone >> pst_truncate >> pst_zone >> end
+start >> raw_truncate >> raw_zone >> pst_truncate >> pst_zone >> crt_zone >> end
+
 
 
 

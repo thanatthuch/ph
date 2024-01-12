@@ -1,0 +1,21 @@
+[2024-01-12T06:12:04.475+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Data_Ingestion.crt_load manual__2024-01-12T06:11:59.226419+00:00 [queued]>
+[2024-01-12T06:12:04.479+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Data_Ingestion.crt_load manual__2024-01-12T06:11:59.226419+00:00 [queued]>
+[2024-01-12T06:12:04.479+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 1
+[2024-01-12T06:12:04.484+0000] {taskinstance.py:1380} INFO - Executing <Task(PostgresOperator): crt_load> on 2024-01-12 06:11:59.226419+00:00
+[2024-01-12T06:12:04.487+0000] {standard_task_runner.py:57} INFO - Started process 1992 to run task
+[2024-01-12T06:12:04.489+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'Data_Ingestion', 'crt_load', 'manual__2024-01-12T06:11:59.226419+00:00', '--job-id', '95', '--raw', '--subdir', 'DAGS_FOLDER/data_ingestion_layer.py', '--cfg-path', '/tmp/tmph9jqio_6']
+[2024-01-12T06:12:04.491+0000] {standard_task_runner.py:85} INFO - Job 95: Subtask crt_load
+[2024-01-12T06:12:04.511+0000] {task_command.py:415} INFO - Running <TaskInstance: Data_Ingestion.crt_load manual__2024-01-12T06:11:59.226419+00:00 [running]> on host 9e5ee476ef7d
+[2024-01-12T06:12:04.654+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='thanatthuch@msyne.co.th' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='Data_Ingestion' AIRFLOW_CTX_TASK_ID='crt_load' AIRFLOW_CTX_EXECUTION_DATE='2024-01-12T06:11:59.226419+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-01-12T06:11:59.226419+00:00'
+[2024-01-12T06:12:04.655+0000] {sql.py:274} INFO - Executing: INSERT INTO "medcury-de".ProductSalesAmountByMonth (ProductID, ProductName, salesAmount, percentage_change, start_date)
+SELECT ProductId, ProductName, salesAmount, percentage_change, start_date
+FROM pst_staging.ProductSalesAmountByMonth
+[2024-01-12T06:12:04.658+0000] {base.py:73} INFO - Using connection ID 'postgres_default' for task execution.
+[2024-01-12T06:12:04.661+0000] {base.py:73} INFO - Using connection ID 'postgres_default' for task execution.
+[2024-01-12T06:12:04.663+0000] {sql.py:418} INFO - Running statement: INSERT INTO "medcury-de".ProductSalesAmountByMonth (ProductID, ProductName, salesAmount, percentage_change, start_date)
+SELECT ProductId, ProductName, salesAmount, percentage_change, start_date
+FROM pst_staging.ProductSalesAmountByMonth, parameters: None
+[2024-01-12T06:12:04.663+0000] {sql.py:427} INFO - Rows affected: 40
+[2024-01-12T06:12:04.667+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=Data_Ingestion, task_id=crt_load, execution_date=20240112T061159, start_date=20240112T061204, end_date=20240112T061204
+[2024-01-12T06:12:04.703+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-01-12T06:12:04.713+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

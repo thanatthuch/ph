@@ -1,0 +1,16 @@
+[2024-01-12T08:32:14.306+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Data_Ingestion.pst_truncate manual__2024-01-12T08:32:10.574080+00:00 [queued]>
+[2024-01-12T08:32:14.310+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Data_Ingestion.pst_truncate manual__2024-01-12T08:32:10.574080+00:00 [queued]>
+[2024-01-12T08:32:14.310+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 1
+[2024-01-12T08:32:14.315+0000] {taskinstance.py:1380} INFO - Executing <Task(PostgresOperator): pst_truncate> on 2024-01-12 08:32:10.574080+00:00
+[2024-01-12T08:32:14.318+0000] {standard_task_runner.py:57} INFO - Started process 4967 to run task
+[2024-01-12T08:32:14.320+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'Data_Ingestion', 'pst_truncate', 'manual__2024-01-12T08:32:10.574080+00:00', '--job-id', '367', '--raw', '--subdir', 'DAGS_FOLDER/data_ingestion_layer.py', '--cfg-path', '/tmp/tmpeskkt3ny']
+[2024-01-12T08:32:14.322+0000] {standard_task_runner.py:85} INFO - Job 367: Subtask pst_truncate
+[2024-01-12T08:32:14.345+0000] {task_command.py:415} INFO - Running <TaskInstance: Data_Ingestion.pst_truncate manual__2024-01-12T08:32:10.574080+00:00 [running]> on host 9e5ee476ef7d
+[2024-01-12T08:32:14.479+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='thanatthuch@msyne.co.th' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='Data_Ingestion' AIRFLOW_CTX_TASK_ID='pst_truncate' AIRFLOW_CTX_EXECUTION_DATE='2024-01-12T08:32:10.574080+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-01-12T08:32:10.574080+00:00'
+[2024-01-12T08:32:14.480+0000] {sql.py:274} INFO - Executing: TRUNCATE TABLE pst_staging.ProductSalesAmountByMonth;
+[2024-01-12T08:32:14.483+0000] {base.py:73} INFO - Using connection ID 'postgres_default' for task execution.
+[2024-01-12T08:32:14.486+0000] {base.py:73} INFO - Using connection ID 'postgres_default' for task execution.
+[2024-01-12T08:32:14.487+0000] {sql.py:418} INFO - Running statement: TRUNCATE TABLE pst_staging.ProductSalesAmountByMonth;, parameters: None
+[2024-01-12T08:32:14.492+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=Data_Ingestion, task_id=pst_truncate, execution_date=20240112T083210, start_date=20240112T083214, end_date=20240112T083214
+[2024-01-12T08:32:14.534+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-01-12T08:32:14.644+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check

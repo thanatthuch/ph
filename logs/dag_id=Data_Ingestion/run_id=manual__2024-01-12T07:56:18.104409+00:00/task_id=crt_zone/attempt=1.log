@@ -1,0 +1,104 @@
+[2024-01-12T07:56:24.146+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Data_Ingestion.crt_zone manual__2024-01-12T07:56:18.104409+00:00 [queued]>
+[2024-01-12T07:56:24.150+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Data_Ingestion.crt_zone manual__2024-01-12T07:56:18.104409+00:00 [queued]>
+[2024-01-12T07:56:24.151+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 1
+[2024-01-12T07:56:24.156+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): crt_zone> on 2024-01-12 07:56:18.104409+00:00
+[2024-01-12T07:56:24.159+0000] {standard_task_runner.py:57} INFO - Started process 4244 to run task
+[2024-01-12T07:56:24.161+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'Data_Ingestion', 'crt_zone', 'manual__2024-01-12T07:56:18.104409+00:00', '--job-id', '309', '--raw', '--subdir', 'DAGS_FOLDER/data_ingestion_layer.py', '--cfg-path', '/tmp/tmpbd9sb0ay']
+[2024-01-12T07:56:24.163+0000] {standard_task_runner.py:85} INFO - Job 309: Subtask crt_zone
+[2024-01-12T07:56:24.186+0000] {task_command.py:415} INFO - Running <TaskInstance: Data_Ingestion.crt_zone manual__2024-01-12T07:56:18.104409+00:00 [running]> on host 9e5ee476ef7d
+[2024-01-12T07:56:24.326+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='thanatthuch@msyne.co.th' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='Data_Ingestion' AIRFLOW_CTX_TASK_ID='crt_zone' AIRFLOW_CTX_EXECUTION_DATE='2024-01-12T07:56:18.104409+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-01-12T07:56:18.104409+00:00'
+[2024-01-12T07:56:24.332+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/data_ingestion_layer.py", line 124, in fetch_data
+    if str(day_of_file)>str(r['start_date']):
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/cursor.py", line 801, in _key_fallback
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+sqlalchemy.exc.NoSuchColumnError: Could not locate column in row for column 'start_date'
+[2024-01-12T07:56:24.337+0000] {taskinstance.py:1398} INFO - Marking task as FAILED. dag_id=Data_Ingestion, task_id=crt_zone, execution_date=20240112T075618, start_date=20240112T075624, end_date=20240112T075624
+[2024-01-12T07:56:24.343+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/email.py:154: RemovedInAirflow3Warning: Fetching SMTP credentials from configuration variables will be deprecated in a future release. Please set credentials using a connection instead.
+  send_mime_email(e_from=mail_from, e_to=recipients, mime_msg=msg, conn_id=conn_id, dryrun=dryrun)
+
+[2024-01-12T07:56:24.343+0000] {configuration.py:1063} WARNING - section/key [smtp/smtp_user] not found in config
+[2024-01-12T07:56:24.343+0000] {email.py:270} INFO - Email alerting: attempt 1
+[2024-01-12T07:56:24.346+0000] {configuration.py:1063} WARNING - section/key [smtp/smtp_user] not found in config
+[2024-01-12T07:56:24.347+0000] {email.py:270} INFO - Email alerting: attempt 1
+[2024-01-12T07:56:24.347+0000] {taskinstance.py:2005} ERROR - Failed to send email to: thanatthuch@msyne.co.th
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 1516, in _run_raw_task
+    self._execute_task_with_callbacks(context, test_mode, session=session)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 1679, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 1742, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/data_ingestion_layer.py", line 124, in fetch_data
+    if str(day_of_file)>str(r['start_date']):
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/cursor.py", line 801, in _key_fallback
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+sqlalchemy.exc.NoSuchColumnError: Could not locate column in row for column 'start_date'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2418, in email_alert
+    send_email(task.email, subject, html_content)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/email.py", line 80, in send_email
+    return backend(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/email.py", line 154, in send_email_smtp
+    send_mime_email(e_from=mail_from, e_to=recipients, mime_msg=msg, conn_id=conn_id, dryrun=dryrun)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/email.py", line 272, in send_mime_email
+    smtp_conn = _get_smtp_connection(smtp_host, smtp_port, smtp_timeout, smtp_ssl)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/email.py", line 317, in _get_smtp_connection
+    return smtplib.SMTP(host=host, port=port, timeout=timeout)
+  File "/usr/local/lib/python3.8/smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/local/lib/python3.8/smtplib.py", line 339, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/local/lib/python3.8/smtplib.py", line 310, in _get_socket
+    return socket.create_connection((host, port), timeout,
+  File "/usr/local/lib/python3.8/socket.py", line 808, in create_connection
+    raise err
+  File "/usr/local/lib/python3.8/socket.py", line 796, in create_connection
+    sock.connect(sa)
+OSError: [Errno 99] Cannot assign requested address
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2003, in handle_failure
+    self.email_alert(error, task)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2420, in email_alert
+    send_email(task.email, subject, html_content_err)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/email.py", line 80, in send_email
+    return backend(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/email.py", line 154, in send_email_smtp
+    send_mime_email(e_from=mail_from, e_to=recipients, mime_msg=msg, conn_id=conn_id, dryrun=dryrun)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/email.py", line 272, in send_mime_email
+    smtp_conn = _get_smtp_connection(smtp_host, smtp_port, smtp_timeout, smtp_ssl)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/email.py", line 317, in _get_smtp_connection
+    return smtplib.SMTP(host=host, port=port, timeout=timeout)
+  File "/usr/local/lib/python3.8/smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/local/lib/python3.8/smtplib.py", line 339, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/local/lib/python3.8/smtplib.py", line 310, in _get_socket
+    return socket.create_connection((host, port), timeout,
+  File "/usr/local/lib/python3.8/socket.py", line 808, in create_connection
+    raise err
+  File "/usr/local/lib/python3.8/socket.py", line 796, in create_connection
+    sock.connect(sa)
+OSError: [Errno 99] Cannot assign requested address
+[2024-01-12T07:56:24.353+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 309 for task crt_zone (Could not locate column in row for column 'start_date'; 4244)
+[2024-01-12T07:56:24.374+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-01-12T07:56:24.386+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

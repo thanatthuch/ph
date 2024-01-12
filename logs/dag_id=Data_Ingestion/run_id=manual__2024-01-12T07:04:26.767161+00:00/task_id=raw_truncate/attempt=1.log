@@ -1,0 +1,16 @@
+[2024-01-12T07:04:28.181+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Data_Ingestion.raw_truncate manual__2024-01-12T07:04:26.767161+00:00 [queued]>
+[2024-01-12T07:04:28.186+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Data_Ingestion.raw_truncate manual__2024-01-12T07:04:26.767161+00:00 [queued]>
+[2024-01-12T07:04:28.186+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 1
+[2024-01-12T07:04:28.192+0000] {taskinstance.py:1380} INFO - Executing <Task(PostgresOperator): raw_truncate> on 2024-01-12 07:04:26.767161+00:00
+[2024-01-12T07:04:28.196+0000] {standard_task_runner.py:57} INFO - Started process 3116 to run task
+[2024-01-12T07:04:28.199+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'Data_Ingestion', 'raw_truncate', 'manual__2024-01-12T07:04:26.767161+00:00', '--job-id', '201', '--raw', '--subdir', 'DAGS_FOLDER/data_ingestion_layer.py', '--cfg-path', '/tmp/tmpw2c9rli3']
+[2024-01-12T07:04:28.202+0000] {standard_task_runner.py:85} INFO - Job 201: Subtask raw_truncate
+[2024-01-12T07:04:28.239+0000] {task_command.py:415} INFO - Running <TaskInstance: Data_Ingestion.raw_truncate manual__2024-01-12T07:04:26.767161+00:00 [running]> on host 9e5ee476ef7d
+[2024-01-12T07:04:28.492+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='thanatthuch@msyne.co.th' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='Data_Ingestion' AIRFLOW_CTX_TASK_ID='raw_truncate' AIRFLOW_CTX_EXECUTION_DATE='2024-01-12T07:04:26.767161+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-01-12T07:04:26.767161+00:00'
+[2024-01-12T07:04:28.493+0000] {sql.py:274} INFO - Executing: TRUNCATE TABLE raw_staging.ProductSalesAmountByMonth;
+[2024-01-12T07:04:28.497+0000] {base.py:73} INFO - Using connection ID 'postgres_default' for task execution.
+[2024-01-12T07:04:28.501+0000] {base.py:73} INFO - Using connection ID 'postgres_default' for task execution.
+[2024-01-12T07:04:28.503+0000] {sql.py:418} INFO - Running statement: TRUNCATE TABLE raw_staging.ProductSalesAmountByMonth;, parameters: None
+[2024-01-12T07:04:28.509+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=Data_Ingestion, task_id=raw_truncate, execution_date=20240112T070426, start_date=20240112T070428, end_date=20240112T070428
+[2024-01-12T07:04:28.534+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-01-12T07:04:28.553+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check

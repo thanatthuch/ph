@@ -1,0 +1,17 @@
+[2024-01-12T08:20:00.489+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Data_Ingestion.pst_load manual__2024-01-12T08:19:55.371225+00:00 [queued]>
+[2024-01-12T08:20:00.492+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Data_Ingestion.pst_load manual__2024-01-12T08:19:55.371225+00:00 [queued]>
+[2024-01-12T08:20:00.493+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 1
+[2024-01-12T08:20:00.497+0000] {taskinstance.py:1380} INFO - Executing <Task(PostgresOperator): pst_load> on 2024-01-12 08:19:55.371225+00:00
+[2024-01-12T08:20:00.500+0000] {standard_task_runner.py:57} INFO - Started process 4691 to run task
+[2024-01-12T08:20:00.502+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'Data_Ingestion', 'pst_load', 'manual__2024-01-12T08:19:55.371225+00:00', '--job-id', '338', '--raw', '--subdir', 'DAGS_FOLDER/data_ingestion_layer.py', '--cfg-path', '/tmp/tmpmzgszdir']
+[2024-01-12T08:20:00.505+0000] {standard_task_runner.py:85} INFO - Job 338: Subtask pst_load
+[2024-01-12T08:20:00.527+0000] {task_command.py:415} INFO - Running <TaskInstance: Data_Ingestion.pst_load manual__2024-01-12T08:19:55.371225+00:00 [running]> on host 9e5ee476ef7d
+[2024-01-12T08:20:00.667+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='thanatthuch@msyne.co.th' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='Data_Ingestion' AIRFLOW_CTX_TASK_ID='pst_load' AIRFLOW_CTX_EXECUTION_DATE='2024-01-12T08:19:55.371225+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-01-12T08:19:55.371225+00:00'
+[2024-01-12T08:20:00.667+0000] {sql.py:274} INFO - Executing: INSERT INTO pst_staging.ProductSalesAmountByMonth (ProductID, ProductName, salesAmount, start_date) SELECT cast(ProductID as int), ProductName ,cast(salesAmount as decimal(15,2)), TO_DATE(yearMonth || '-01', 'YYYY-MM-DD') as start_date  FROM raw_staging.ProductSalesAmountByMonth 
+[2024-01-12T08:20:00.670+0000] {base.py:73} INFO - Using connection ID 'postgres_default' for task execution.
+[2024-01-12T08:20:00.673+0000] {base.py:73} INFO - Using connection ID 'postgres_default' for task execution.
+[2024-01-12T08:20:00.674+0000] {sql.py:418} INFO - Running statement: INSERT INTO pst_staging.ProductSalesAmountByMonth (ProductID, ProductName, salesAmount, start_date) SELECT cast(ProductID as int), ProductName ,cast(salesAmount as decimal(15,2)), TO_DATE(yearMonth || '-01', 'YYYY-MM-DD') as start_date  FROM raw_staging.ProductSalesAmountByMonth , parameters: None
+[2024-01-12T08:20:00.676+0000] {sql.py:427} INFO - Rows affected: 35
+[2024-01-12T08:20:00.679+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=Data_Ingestion, task_id=pst_load, execution_date=20240112T081955, start_date=20240112T082000, end_date=20240112T082000
+[2024-01-12T08:20:00.716+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-01-12T08:20:00.823+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check

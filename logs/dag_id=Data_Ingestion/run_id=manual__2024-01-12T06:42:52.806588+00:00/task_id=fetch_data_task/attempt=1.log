@@ -1,0 +1,53 @@
+[2024-01-12T06:42:53.964+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Data_Ingestion.fetch_data_task manual__2024-01-12T06:42:52.806588+00:00 [queued]>
+[2024-01-12T06:42:53.970+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Data_Ingestion.fetch_data_task manual__2024-01-12T06:42:52.806588+00:00 [queued]>
+[2024-01-12T06:42:53.970+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 1
+[2024-01-12T06:42:53.978+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): fetch_data_task> on 2024-01-12 06:42:52.806588+00:00
+[2024-01-12T06:42:53.983+0000] {standard_task_runner.py:57} INFO - Started process 2534 to run task
+[2024-01-12T06:42:53.987+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'Data_Ingestion', 'fetch_data_task', 'manual__2024-01-12T06:42:52.806588+00:00', '--job-id', '115', '--raw', '--subdir', 'DAGS_FOLDER/data_ingestion_layer.py', '--cfg-path', '/tmp/tmpcuio4r0j']
+[2024-01-12T06:42:53.992+0000] {standard_task_runner.py:85} INFO - Job 115: Subtask fetch_data_task
+[2024-01-12T06:42:54.058+0000] {task_command.py:415} INFO - Running <TaskInstance: Data_Ingestion.fetch_data_task manual__2024-01-12T06:42:52.806588+00:00 [running]> on host 9e5ee476ef7d
+[2024-01-12T06:42:54.332+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='thanatthuch@msyne.co.th' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='Data_Ingestion' AIRFLOW_CTX_TASK_ID='fetch_data_task' AIRFLOW_CTX_EXECUTION_DATE='2024-01-12T06:42:52.806588+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-01-12T06:42:52.806588+00:00'
+[2024-01-12T06:42:54.337+0000] {logging_mixin.py:151} INFO - (17, 'Alice Mutton', Decimal('936.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.337+0000] {logging_mixin.py:151} INFO - (40, 'Boston Crab Meat', Decimal('735.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.337+0000] {logging_mixin.py:151} INFO - (60, 'Camembert Pierrot', Decimal('1088.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.337+0000] {logging_mixin.py:151} INFO - (2, 'Chang', Decimal('1596.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.337+0000] {logging_mixin.py:151} INFO - (39, 'Chartreuse verte', Decimal('691.20'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.338+0000] {logging_mixin.py:151} INFO - (5, "Chef Anton's Gumbo Mix", Decimal('1309.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.338+0000] {logging_mixin.py:151} INFO - (33, 'Geitost', Decimal('170.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.338+0000] {logging_mixin.py:151} INFO - (56, 'Gnocchi di nonna Alice', Decimal('60.80'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.339+0000] {logging_mixin.py:151} INFO - (31, 'Gorgonzola Telino', Decimal('200.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.339+0000] {logging_mixin.py:151} INFO - (37, 'Gravad lax', Decimal('20.80'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.339+0000] {logging_mixin.py:151} INFO - (24, 'Guaran Fantstica', Decimal('154.80'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.339+0000] {logging_mixin.py:151} INFO - (22, "Gustaf's Knckebrd", Decimal('100.80'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.339+0000] {logging_mixin.py:151} INFO - (36, 'Inlagd Sill', Decimal('380.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.340+0000] {logging_mixin.py:151} INFO - (41, "Jack's New England Clam Chowder", Decimal('392.70'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.340+0000] {logging_mixin.py:151} INFO - (76, 'Lakkalikri', Decimal('216.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.340+0000] {logging_mixin.py:151} INFO - (74, 'Longlife Tofu', Decimal('456.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.340+0000] {logging_mixin.py:151} INFO - (65, 'Louisiana Fiery Hot Pepper Sauce', Decimal('588.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.341+0000] {logging_mixin.py:151} INFO - (51, 'Manjimup Dried Apples', Decimal('3180.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.341+0000] {logging_mixin.py:151} INFO - (32, 'Mascarpone Fabioli', Decimal('153.60'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.341+0000] {logging_mixin.py:151} INFO - (49, 'Maxilaku', Decimal('640.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.341+0000] {logging_mixin.py:151} INFO - (72, 'Mozzarella di Giovanni', Decimal('841.20'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.341+0000] {logging_mixin.py:151} INFO - (30, 'Nord-Ost Matjeshering', Decimal('1242.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.342+0000] {logging_mixin.py:151} INFO - (77, 'Original Frankfurter grne Soe', Decimal('280.80'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.342+0000] {logging_mixin.py:151} INFO - (70, 'Outback Lager', Decimal('492.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.342+0000] {logging_mixin.py:151} INFO - (16, 'Pavlova', Decimal('1320.50'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.342+0000] {logging_mixin.py:151} INFO - (53, 'Perth Pasties', Decimal('393.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.342+0000] {logging_mixin.py:151} INFO - (55, 'Pt chinois', Decimal('403.20'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.343+0000] {logging_mixin.py:151} INFO - (11, 'Queso Cabrales', Decimal('168.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.343+0000] {logging_mixin.py:151} INFO - (12, 'Queso Manchego La Pastora', Decimal('364.80'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.343+0000] {logging_mixin.py:151} INFO - (59, 'Raclette Courdavault', Decimal('4400.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.343+0000] {logging_mixin.py:151} INFO - (57, 'Ravioli Angelo', Decimal('1014.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.343+0000] {logging_mixin.py:151} INFO - (27, 'Schoggi Schokolade', Decimal('877.50'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.344+0000] {logging_mixin.py:151} INFO - (42, 'Singaporean Hokkien Fried Mee', Decimal('98.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.344+0000] {logging_mixin.py:151} INFO - (20, "Sir Rodney's Marmalade", Decimal('2592.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.344+0000] {logging_mixin.py:151} INFO - (21, "Sir Rodney's Scones", Decimal('240.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.344+0000] {logging_mixin.py:151} INFO - (35, 'Steeleye Stout', Decimal('288.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.344+0000] {logging_mixin.py:151} INFO - (62, 'Tarte au sucre', Decimal('591.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.345+0000] {logging_mixin.py:151} INFO - (29, 'Thringer Rostbratwurst', Decimal('990.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.345+0000] {logging_mixin.py:151} INFO - (14, 'Tofu', Decimal('167.40'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.345+0000] {logging_mixin.py:151} INFO - (7, "Uncle Bob's Organic Dried Pears", Decimal('360.00'), datetime.date(1996, 7, 1))
+[2024-01-12T06:42:54.345+0000] {python.py:194} INFO - Done. Returned value was: None
+[2024-01-12T06:42:54.350+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=Data_Ingestion, task_id=fetch_data_task, execution_date=20240112T064252, start_date=20240112T064253, end_date=20240112T064254
+[2024-01-12T06:42:54.367+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-01-12T06:42:54.378+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

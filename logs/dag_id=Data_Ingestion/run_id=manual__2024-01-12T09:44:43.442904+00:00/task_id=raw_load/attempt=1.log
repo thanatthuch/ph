@@ -1,0 +1,63 @@
+[2024-01-12T09:44:46.560+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Data_Ingestion.raw_load manual__2024-01-12T09:44:43.442904+00:00 [queued]>
+[2024-01-12T09:44:46.564+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Data_Ingestion.raw_load manual__2024-01-12T09:44:43.442904+00:00 [queued]>
+[2024-01-12T09:44:46.565+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 1
+[2024-01-12T09:44:46.569+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): raw_load> on 2024-01-12 09:44:43.442904+00:00
+[2024-01-12T09:44:46.573+0000] {standard_task_runner.py:57} INFO - Started process 6186 to run task
+[2024-01-12T09:44:46.575+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'Data_Ingestion', 'raw_load', 'manual__2024-01-12T09:44:43.442904+00:00', '--job-id', '401', '--raw', '--subdir', 'DAGS_FOLDER/data_ingestion_layer.py', '--cfg-path', '/tmp/tmpmvigfugb']
+[2024-01-12T09:44:46.577+0000] {standard_task_runner.py:85} INFO - Job 401: Subtask raw_load
+[2024-01-12T09:44:46.598+0000] {task_command.py:415} INFO - Running <TaskInstance: Data_Ingestion.raw_load manual__2024-01-12T09:44:43.442904+00:00 [running]> on host 9e5ee476ef7d
+[2024-01-12T09:44:46.737+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='thanatthuch@msyne.co.th' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='Data_Ingestion' AIRFLOW_CTX_TASK_ID='raw_load' AIRFLOW_CTX_EXECUTION_DATE='2024-01-12T09:44:43.442904+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-01-12T09:44:43.442904+00:00'
+[2024-01-12T09:44:46.746+0000] {logging_mixin.py:151} INFO -    yearMonth  ProductID                    ProductName  salesAmount
+0    1996-08         17                   Alice Mutton        936.0
+1    1996-08          3                  Aniseed Syrup        240.0
+2    1996-08         40               Boston Crab Meat       1470.0
+3    1996-08         60              Camembert Pierrot       2067.2
+4    1996-08         18               Carnarvon Tigers        600.0
+5    1996-08          1                           Chai        907.2
+6    1996-08          5         Chef Anton's Gumbo Mix        340.0
+7    1996-08         71                    Flotemysost        344.0
+8    1996-08         33                        Geitost         88.0
+9    1996-08         15                   Genen Shouyu        248.0
+10   1996-08         31              Gorgonzola Telino        550.0
+11   1996-08         24               Guaran Fantstica        144.0
+12   1996-08         44                   Gula Malacca        945.5
+13   1996-08         10                          Ikura        967.2
+14   1996-08         36                    Inlagd Sill        456.0
+15   1996-08         43                    Ipoh Coffee       1472.0
+16   1996-08         13                          Konbu        144.0
+17   1996-08         76                     Lakkalikri        475.2
+18   1996-08         67      Laughing Lumberjack Lager         56.0
+19   1996-08         51          Manjimup Dried Apples         84.8
+20   1996-08         49                       Maxilaku        240.0
+21   1996-08         72         Mozzarella di Giovanni        945.2
+22   1996-08         30          Nord-Ost Matjeshering        124.2
+23   1996-08         77  Original Frankfurter grne Soe        104.0
+24   1996-08         16                        Pavlova        556.0
+25   1996-08         53                  Perth Pasties        943.2
+26   1996-08         55                     Pt chinois        384.0
+27   1996-08         59           Raclette Courdavault        924.0
+28   1996-08         57                 Ravioli Angelo         31.2
+29   1996-08         73                      Rd Kaviar        300.0
+30   1996-08         75             Rhnbru Klosterbier        260.4
+31   1996-08         28               Rssle Sauerkraut        728.0
+32   1996-08         34                  Sasquatch Ale        224.0
+33   1996-08         27             Schoggi Schokolade        526.5
+34   1996-08         68            Scottish Longbreads         30.0
+35   1996-08         20         Sir Rodney's Marmalade       1684.8
+36   1996-08         46                      Spegesild        144.0
+37   1996-08         35                 Steeleye Stout       1497.6
+38   1996-08         62                 Tarte au sucre       2048.8
+39   1996-08         19     Teatime Chocolate Biscuits        138.7
+40   1996-08         29         Thringer Rostbratwurst       1485.0
+41   1996-08         54                       Tourtire         59.0
+42   1996-08         63                   Vegie-spread        456.3
+43   1996-08         64       Wimmers gute Semmelkndel        239.4
+[2024-01-12T09:44:46.746+0000] {postgres.py:168} INFO - Running copy expert: COPY raw_staging.ProductSalesAmountByMonth (yearMonth, ProductId, ProductName, salesAmount)
+        FROM stdin WITH CSV HEADER
+        DELIMITER as ','
+    , filename: /opt/***/data/1996Aug.csv
+[2024-01-12T09:44:46.749+0000] {base.py:73} INFO - Using connection ID 'postgres_default' for task execution.
+[2024-01-12T09:44:46.752+0000] {python.py:194} INFO - Done. Returned value was: None
+[2024-01-12T09:44:46.756+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=Data_Ingestion, task_id=raw_load, execution_date=20240112T094443, start_date=20240112T094446, end_date=20240112T094446
+[2024-01-12T09:44:46.788+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-01-12T09:44:46.921+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check
